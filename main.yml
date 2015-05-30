@@ -23,6 +23,11 @@
         - deb http://dl.google.com/linux/chrome/deb/ stable main
         - deb http://download.virtualbox.org/virtualbox/debian trusty contrib
         - deb http://linux.dropbox.com/ubuntu trusty main
+        - ppa:libreoffice/ppa
+        - ppa:webupd8team/java
+
+    - name: Purge existing libreoffice
+      apt: name=libreoffice* state=absent purge=yes
 
     - name: Update apt cache
       apt: update_cache=yes
@@ -45,6 +50,7 @@
         - build-essential
         - traceroute
         - git
+        - oracle-java8-installer
 
     - name: Download Anaconda python distribution
       sudo: no
@@ -63,4 +69,11 @@
     - name: Update Anaconda packages
       command: "~/anaconda/bin/conda update anaconda"
 
+    - name: Remove Anaconda.sh
+      file: path=./Anaconda.sh state=absent
 
+    - name: Install Java 8 JDK
+      shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+    - name: Set Java Environment variables
+      apt: name=oracle-java8-set-default state=latest
