@@ -27,7 +27,8 @@
         - ppa:webupd8team/java
 
     - name: Purge existing libreoffice
-      apt: name=libreoffice* state=absent purge=yes
+      apt: name=libreoffice* state=absent purge=yes 
+      sudo: yes
 
     - name: Update apt cache
       apt: update_cache=yes
@@ -50,6 +51,7 @@
         - build-essential
         - traceroute
         - git
+        - meld
 
     - name: Download Anaconda python distribution
       sudo: no
@@ -79,3 +81,4 @@
 
     - name: Set Java Environment variables
       apt: name=oracle-java8-set-default state=latest install_recommends=yes
+
