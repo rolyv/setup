@@ -50,7 +50,6 @@
         - build-essential
         - traceroute
         - git
-        - oracle-java8-installer
 
     - name: Download Anaconda python distribution
       sudo: no
@@ -72,8 +71,11 @@
     - name: Remove Anaconda.sh
       file: path=./Anaconda.sh state=absent
 
-    - name: Install Java 8 JDK
-      shell: echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+    - name: Autoaccept license for Java
+      debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1.1' value='true' vtype='select'
+
+    - name: Install Java 8
+      apt: name=oracle-java8-installer state=latest install_recommends=yes
 
     - name: Set Java Environment variables
-      apt: name=oracle-java8-set-default state=latest
+      apt: name=oracle-java8-set-default state=latest install_recommends=yes
