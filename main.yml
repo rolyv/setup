@@ -1,0 +1,66 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Add apt key from keyserver
+      apt_key: keyserver={{ item.keyserver }} id={{ item.id }}
+      sudo: yes
+      with_items:
+        - { keyserver: 'hkp://keyserver.ubuntu.com:80', id: 94558F59 }
+        - { keyserver: 'pgp.mit.edu', id: 5044912E }
+
+    - name: Add apt key via url
+      apt_key: url={{ item }} state=present
+      sudo: yes
+      with_items:
+        - 'https://dl-ssl.google.com/linux/linux_signing_key.pub'
+        - 'http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc'
+
+    - name: Add apt repositories
+      apt_repository: repo='{{ item }}' state=present
+      sudo: yes
+      with_items:
+        - deb http://repository.spotify.com stable non-free
+        - deb http://dl.google.com/linux/chrome/deb/ stable main
+        - deb http://download.virtualbox.org/virtualbox/debian trusty contrib
+        - deb http://linux.dropbox.com/ubuntu trusty main
+
+    - name: Update apt cache
+      apt: update_cache=yes
+      sudo: yes
+
+    - name: Install apt packages
+      apt: name={{ item }} state=latest
+      sudo: yes
+      with_items:
+        - spotify-client
+        - google-chrome-stable
+        - virtualbox-4.3
+        - gdm
+        - network-manager-gnome
+        - dropbox
+        - curl
+        - rlwrap
+        - vim
+        - emacs24
+        - build-essential
+        - traceroute
+        - git
+
+    - name: Download Anaconda python distribution
+      sudo: no
+      get_url:
+        url: https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.2.0-Linux-x86_64.sh
+        mode: 0755
+        dest: ./Anaconda.sh
+        force: no
+
+    - name: Install Anaconda
+      command: ./Anaconda.sh -b -p ~/anaconda
+
+    - name: Update Anaconda command-line utility
+      command: "~/anaconda/bin/conda update conda"
+
+    - name: Update Anaconda packages
+      command: "~/anaconda/bin/conda update anaconda"
+
+
