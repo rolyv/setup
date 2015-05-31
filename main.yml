@@ -53,6 +53,7 @@
         - git
         - meld
         - libreoffice
+        - xclip
 
     - name: Download Anaconda python distribution
       sudo: no
