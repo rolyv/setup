@@ -62,7 +62,7 @@
         force: no
 
     - name: Install Anaconda
-      command: bash ~/Anaconda.sh -b -p ~/anaconda
+      command: bash ~/Anaconda.sh -b -p ~/anaconda creates=~/anaconda
 
     - name: Update Anaconda command-line utility
       command: "~/anaconda/bin/conda update conda"
