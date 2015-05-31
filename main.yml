@@ -58,11 +58,11 @@
       get_url:
         url: https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.2.0-Linux-x86_64.sh
         mode: 0755
-        dest: ./Anaconda.sh
+        dest: ~/Anaconda.sh
         force: no
 
     - name: Install Anaconda
-      command: ./Anaconda.sh -b -p ~/anaconda
+      command: bash ~/Anaconda.sh -b -p ~/anaconda
 
     - name: Update Anaconda command-line utility
       command: "~/anaconda/bin/conda update conda"
