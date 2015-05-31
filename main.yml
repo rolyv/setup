@@ -54,6 +54,7 @@
         - meld
         - libreoffice
         - xclip
+        - python-gpgme
 
     - name: Download Anaconda python distribution
       sudo: no
