@@ -88,7 +88,7 @@
       git: repo=https://github.com/rolyv/dotfiles.git dest=~/dotfiles
 
     - name: Create symlinks
-      file: src=~/dotfiles/{{ item.path }} dest={{ item.dest }} state=link
+      file: src=~/dotfiles/{{ item.path }} dest={{ item.dest }} state=link force=yes
       with_items:
         - { path: '.bash_profile', dest: '~/.bash_profile' }
         - { path: '.bashrc', dest: '~/.bashrc' }
