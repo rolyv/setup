@@ -85,3 +85,5 @@
       apt: name=oracle-java8-set-default state=latest install_recommends=yes
       sudo: yes
 
+    - name: Clone dotfiles
+      git: repo=https://github.com/rolyv/dotfiles.git dest=~
