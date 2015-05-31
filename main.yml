@@ -52,6 +52,7 @@
         - traceroute
         - git
         - meld
+        - libreoffice
 
     - name: Download Anaconda python distribution
       sudo: no
@@ -83,4 +84,4 @@
       sudo: yes
 
     - name: Clone dotfiles
-      git: repo=https://github.com/rolyv/dotfiles.git dest=~
+      git: repo=https://github.com/rolyv/dotfiles.git dest=~/dotfiles
