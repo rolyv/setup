@@ -70,9 +70,6 @@
     - name: Update Anaconda packages
       command: "~/anaconda/bin/conda update anaconda"
 
-    - name: Remove Anaconda.sh
-      file: path=~/Anaconda.sh state=absent
-
     - name: Autoaccept license for Java
       debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
       sudo: yes
