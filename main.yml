@@ -90,7 +90,6 @@
     - name: Create symlinks
       file: src=~/dotfiles/{{ item.path }} dest={{ item.dest }} state=link
       with_items:
-        - { path: '.bash_profile', dest: '~/.bash_profile' }
         - { path: '.bashrc', dest: '~/.bashrc' }
         - { path: '.bashrc_custom', dest: '~/.bashrc_custom' }
         - { path: '.emacs.d', dest: '~/.emacs.d' }
