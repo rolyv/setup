@@ -54,6 +54,7 @@
         - meld
         - libreoffice
         - xclip
+        - python-gpgme
 
     - name: Download Anaconda python distribution
       sudo: no
@@ -88,7 +89,7 @@
       git: repo=https://github.com/rolyv/dotfiles.git dest=~/dotfiles
 
     - name: Create symlinks
-      file: src=~/dotfiles/{{ item.path }} dest={{ item.dest }} state=link
+      file: src=~/dotfiles/{{ item.path }} dest={{ item.dest }} state=link force=yes
       with_items:
         - { path: '.bashrc', dest: '~/.bashrc' }
         - { path: '.bashrc_custom', dest: '~/.bashrc_custom' }
