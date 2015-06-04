@@ -55,6 +55,8 @@
         - libreoffice
         - xclip
         - python-gpgme
+        - gimp
+        - inkscape
 
     - name: Download Anaconda python distribution
       sudo: no
